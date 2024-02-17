@@ -197,21 +197,21 @@ class NB_nd_pdf(object):
         # DataFrame columns and types, in order:
         columns = [
             ("Parameter", str),
-            ("Estimate", np.float),
-            ("CI68_low", np.float),
-            ("CI68_high", np.float),
-            ("CI95_low", np.float),
-            ("CI95_high", np.float),
+            ("Estimate", float),
+            ("CI68_low", float),
+            ("CI68_high", float),
+            ("CI95_low", float),
+            ("CI95_high", float),
             ("Est_in_CI68?", str),
             ("Est_in_CI95?", str),
             ("Est_at_lower?", str),
             ("Est_at_upper?", str),
-            ("P(lower)", np.float),
-            ("P(upper)", np.float),
+            ("P(lower)", float),
+            ("P(upper)", float),
             ("P(lower)>50%?", str),
             ("P(upper)>50%?", str),
-            ("n_local_maxima", np.int),
-            ("Index_of_peak", np.int),
+            ("n_local_maxima", int),
+            ("Index_of_peak", int),
         ]
         n = self.Grid_spec.ndim
         OD1 = OD([(c, np.zeros(n, dtype=t)) for c, t in columns])
@@ -221,7 +221,7 @@ class NB_nd_pdf(object):
         # Sort DF, so the DF is deterministic (note Upper and lower case param
         # names are sorted into separate sections)
         DF_estimates.set_index("Parameter", inplace=True)
-        for col in [col for col, t in columns if t == np.float]:
+        for col in [col for col, t in columns if t == float]:
             DF_estimates[col] = np.nan
         DF_estimates.loc[:, "n_local_maxima"] = -1
 
